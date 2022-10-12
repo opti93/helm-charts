@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment          # type of deployment
 metadata:
-  name: {{ .Release.name }}-deployment
+  name: {{ .Release.Name }}-deployment
   labels:                 # labels of deployment
     app: my-k8s-app
-    owner: {{ .Release.name }}-opti
+    owner: {{ .Release.Name }}-opti
 spec:
   replicas: {{ .Values.replica_count }}
   selector:
     matchLabels:
-      project: {{ .Release.name }}        # with which pods will be worked this deploment
+      project: {{ .Release.Name }}        # with which pods will be worked this deploment
   template:               # all below how we describe pod
     metadata:
       labels:
-        project: {{ .Release.name }}      # labels of pods and Service will look for those PODS Labels
+        project: {{ .Release.Name }}      # labels of pods and Service will look for those PODS Labels
     spec:
       containers:
-      - name: {{ .Release.name }}-mossad-web
+      - name: {{ .Release.Name }}-mossad-web
         image: {{ .Values.container.image }}
         ports:
         - containerPort: 80
